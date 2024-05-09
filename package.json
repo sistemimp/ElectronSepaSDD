@@ -1,0 +1,36 @@
+{
+  "name": "electronsepasdd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "electron .",
+    "app:dir": "electron-builder --dir",
+    "app:dist": "electron-builder"
+  },
+  "author": "AlexOlivieri",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.3"
+  },
+  "dependencies": {
+    "sepa": "^1.1.0"
+  },
+  "build": {
+    "appId": "ElectronSepaSDD",
+    "mac": {
+      "category": "public.app-category.business"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "perMachine": true
+    }
+  }
+}
