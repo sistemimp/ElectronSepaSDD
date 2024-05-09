@@ -1,7 +1,7 @@
 {
   "name": "electronsepasdd",
   "version": "1.0.0",
-  "description": "",
+  "description": "programma di conversione",
   "main": "src/index.js",
   "scripts": {
     "start": "electron .",
@@ -31,6 +31,7 @@
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "perMachine": true
-    }
+    },
+    "icon": "./src/img/sepalogo.jpg"
   }
 }

@@ -150,6 +150,7 @@ document.getElementById("start").addEventListener('click', () => {
 				console.error(err);
 			} else {
 				console.log('File written successfully');
+				document.getElementById('result').innerHTML='File Creato sul Desktop!'
 			}
 		})
 	};
