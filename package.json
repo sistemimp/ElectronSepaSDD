@@ -21,6 +21,11 @@
     "mac": {
       "category": "public.app-category.business"
     },
+    "publish": {
+      "provider": "generic",
+      "url": "https://file.mediaprint.it/",
+      "channel": "latest"
+    },
     "win": {
       "target": [
         "nsis-web"
