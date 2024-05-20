@@ -32,6 +32,13 @@ document.getElementById("start").addEventListener('click', () => {
 			totale += parseFloat(col[6].replace(",", "."))
 		}
 
+		const row = rows
+			
+		const col1 = row[0].replaceAll('\"', '').split('\t')
+		console.log(col1)
+		data = col1[7].split("-")
+		ReqdColltnDt = data[2] + "-" + data[1] + "-" + data[0]
+
 		let xml = `<?xml version="1.0" encoding="UTF-8"?>
 	<CBISDDReqLogMsg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:CBI:xsd:CBISDDReqLogMsg.00.01.01">
 		<GrpHdr>
