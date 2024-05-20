@@ -51,6 +51,51 @@ document.getElementById("start").addEventListener('click', () => {
 				</Id>
 			</InitgPty>
 		</GrpHdr>
+		<PmtInf>
+		<PmtInfId>`+ i + `</PmtInfId>
+		<PmtMtd>DD</PmtMtd>
+		<PmtTpInf>
+			<SvcLvl>
+				<Cd>SEPA</Cd>
+			</SvcLvl>
+			<LclInstrm>
+				<Cd>B2B</Cd>
+			</LclInstrm>
+			<SeqTp>RCUR</SeqTp>
+		</PmtTpInf>
+		<ReqdColltnDt>`+ ReqdColltnDt + `</ReqdColltnDt>
+		<Cdtr>
+			<Nm>MEDIAPRINT S.R.L.</Nm>
+			<PstlAdr>
+				<StrtNm>C.DA VIBRATA</StrtNm>
+				<PstCd>64015</PstCd>
+				<TwnNm>NERETO</TwnNm>
+				<CtrySubDvsn>TE</CtrySubDvsn>
+				<Ctry>IT</Ctry>
+			</PstlAdr>
+		</Cdtr>
+		<CdtrAcct>
+			<Id>
+				<IBAN>IT32N0200824404000040072358</IBAN>
+			</Id>
+		</CdtrAcct>
+		<CdtrAgt>
+			<FinInstnId>
+				<ClrSysMmbId>
+					<MmbId>02008</MmbId>
+				</ClrSysMmbId>
+			</FinInstnId>
+		</CdtrAgt>
+		<CdtrSchmeId>
+			<Nm>MEDIAPRINT S.R.L.</Nm>
+			<Id>
+				<PrvtId>
+					<Othr>
+						<Id>IT63ZZZ0000000865490676</Id>
+					</Othr>
+				</PrvtId>
+			</Id>
+		</CdtrSchmeId>
 	`
 		for (let index = 0; index < rows.length - 1; index++) {
 			const row = rows
@@ -61,55 +106,11 @@ document.getElementById("start").addEventListener('click', () => {
 
 			data = col[13].split("/")
 			DtOfSgntr = data[2] + "-" + data[1] + "-" + data[0]
-			xml += `		<PmtInf>
-			<PmtInfId>`+ i + `</PmtInfId>
-			<PmtMtd>DD</PmtMtd>
-			<PmtTpInf>
-				<SvcLvl>
-					<Cd>SEPA</Cd>
-				</SvcLvl>
-				<LclInstrm>
-					<Cd>B2B</Cd>
-				</LclInstrm>
-				<SeqTp>RCUR</SeqTp>
-			</PmtTpInf>
-			<ReqdColltnDt>`+ ReqdColltnDt + `</ReqdColltnDt>
-			<Cdtr>
-				<Nm>MEDIAPRINT S.R.L.</Nm>
-				<PstlAdr>
-					<StrtNm>C.DA VIBRATA</StrtNm>
-					<PstCd>64015</PstCd>
-					<TwnNm>NERETO</TwnNm>
-					<CtrySubDvsn>TE</CtrySubDvsn>
-					<Ctry>IT</Ctry>
-				</PstlAdr>
-			</Cdtr>
-			<CdtrAcct>
-				<Id>
-					<IBAN>IT32N0200824404000040072358</IBAN>
-				</Id>
-			</CdtrAcct>
-			<CdtrAgt>
-				<FinInstnId>
-					<ClrSysMmbId>
-						<MmbId>02008</MmbId>
-					</ClrSysMmbId>
-				</FinInstnId>
-			</CdtrAgt>
-			<CdtrSchmeId>
-				<Nm>MEDIAPRINT S.R.L.</Nm>
-				<Id>
-					<PrvtId>
-						<Othr>
-							<Id>ZZZ</Id>
-						</Othr>
-					</PrvtId>
-				</Id>
-			</CdtrSchmeId>
+			xml += `
 			<DrctDbtTxInf>
 				<PmtId>
-					<InstrId>`+ (new Date().toISOString() + Math.floor(Math.random() * 100) + 1) + `</InstrId>
-					<EndToEndId>`+ (new Date().toISOString() + Math.floor(Math.random() * 100) + 1) + `</EndToEndId>
+					<InstrId>`+ (new Date().toISOString() + Math.floor(Math.random() * 10000) + 1) + `</InstrId>
+					<EndToEndId>`+ (new Date().toISOString() + Math.floor(Math.random() * 10000) + 1) + `</EndToEndId>
 				</PmtId>
 				<InstdAmt Ccy="EUR">`+ col[6].replace(',', '.').trim() + `</InstdAmt>
 				<DrctDbtTx>
@@ -137,11 +138,11 @@ document.getElementById("start").addEventListener('click', () => {
 					<Ustrd>`+ col[8] + `</Ustrd>
 				</RmtInf>
 			</DrctDbtTxInf>
-		</PmtInf>`
+		`
 			i++;
 		}
 
-		xml += `</CBISDDReqLogMsg>`
+		xml += `</PmtInf></CBISDDReqLogMsg>`
 
 
 		fs.writeFile(desktopDir + "/" + (Date.now()) + "000000000001.xml", xml, (err) => {
